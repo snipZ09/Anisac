@@ -5,34 +5,33 @@ namespace Game.Combat
 {
     public class InputBuffer : MonoBehaviour
     {
-        private List<BufferedInput> bufferedInputs;
-        private float windowTimer;
-        private float windowTime = 0.5f;
+        private Queue<BufferedInput> bufferedInputs = new();
 
-        private void Update()
-        {
-            if (bufferedInputs.Count > 0)
-            {
-                windowTimer += Time.deltaTime;
-                if (windowTimer >= windowTime)
-                {
-                    ConsumeAll();
-                }
-            }
-        }
+        [SerializeField] private float windowTime = 0.5f;
+        [SerializeField] private int maxEntries = 50;
+
 
         public void Push(BufferedInput input)
         {
-            if (bufferedInputs.Count == 0)
+            if (bufferedInputs.Count >= maxEntries)
             {
-                windowTimer = 0;
+                bufferedInputs.Dequeue();
             }
-            bufferedInputs.Add(input);
+            bufferedInputs.Enqueue(input);
         }
-        
-        public List<BufferedInput> GetValid()
+
+        public IReadOnlyList<BufferedInput> GetValid()
         {
-            return bufferedInputs;
+            List<BufferedInput> result = new();
+            foreach (BufferedInput input in bufferedInputs)
+            {
+                if (Time.time - input.Timestamp <= windowTime)
+                {
+                    result.Add(input);
+                }
+            }
+
+            return result;
         }
 
         public void ConsumeAll()
