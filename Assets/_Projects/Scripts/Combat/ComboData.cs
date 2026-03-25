@@ -7,6 +7,7 @@ namespace Game.Combat
     public class ComboData : ScriptableObject
     {
         public ActionType[] inputActionTypes;
+        public ActionData requiredPreviousAction;
         public ActionData resultActionData;
         public int priority;
         public float maxGapBetweenInputs;

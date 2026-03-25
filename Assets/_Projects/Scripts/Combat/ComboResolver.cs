@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using Game.Shared;
-using UnityEngine;
 
 namespace Game.Combat
 {
@@ -14,14 +11,14 @@ namespace Game.Combat
             _comboDatabase = comboDatabase;
         }
 
-        public ActionData Resolve(IReadOnlyList<BufferedInput> inputs)
+        public ActionData Resolve(IReadOnlyList<BufferedInput> inputs, ActionData previousAction)
         {
             ComboData bestCombo = null;
             foreach (ComboData combo in _comboDatabase.combos)
             {
                 if (IsComboMatch(combo, inputs))
                 {
-                    if (IsInputMatchTiming(inputs, combo.maxGapBetweenInputs))
+                    if (IsInputMatchTiming(inputs, combo.maxGapBetweenInputs, combo.inputActionTypes.Length))
                     {
                         if (bestCombo != null)
                         {
@@ -44,19 +41,41 @@ namespace Game.Combat
                 }
             }
 
+            if (bestCombo && bestCombo.requiredPreviousAction)
+            {
+                bestCombo = null;
+            }
+            
             return bestCombo?.resultActionData;
         }
 
         private bool IsComboMatch(ComboData combo, IReadOnlyList<BufferedInput> inputs)
         {
-            return combo.inputActionTypes.Length <= inputs.Count &&
-                   combo.inputActionTypes.Select((x, i) => x == inputs[i].ActionType)
-                       .All(result => result);
+            bool isMatch = true;
+            if (combo.inputActionTypes.Length > inputs.Count)
+            {
+                isMatch = false;
+            }
+            else
+            {
+                for (int i = 0; i < combo.inputActionTypes.Length; i++)
+                {
+                    var comboValue = combo.inputActionTypes[combo.inputActionTypes.Length - 1 - i];
+                    var inputValue = inputs[inputs.Count - 1 - i].ActionType;
+                    if (comboValue != inputValue)
+                    {
+                        isMatch = false;
+                        break;
+                    }
+                }
+            }
+
+            return isMatch;
         }
 
-        private bool IsInputMatchTiming(IReadOnlyList<BufferedInput> inputs, float maxGap)
+        private bool IsInputMatchTiming(IReadOnlyList<BufferedInput> inputs, float maxGap, int comboLength)
         {
-            for (int i = 0; i < inputs.Count - 1; i++)
+            for (int i = inputs.Count - comboLength; i < inputs.Count - 1; i++)
             {
                 if (inputs[i + 1].Timestamp - inputs[i].Timestamp > maxGap)
                     return false;
