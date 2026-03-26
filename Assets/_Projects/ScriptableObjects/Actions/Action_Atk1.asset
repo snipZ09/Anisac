@@ -19,5 +19,5 @@ MonoBehaviour:
   timeActive: 0.3
   timeRecovery: 0.3
   canCancel: 1
-  cancelWindowStart: 0
-  cancelWindowEnd: 0.25
+  cancelWindowStart: 0.2
+  cancelWindowEnd: 0.35

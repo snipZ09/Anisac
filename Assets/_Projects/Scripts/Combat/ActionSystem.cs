@@ -9,6 +9,8 @@ namespace Game.Combat
         private ActionRuntime _runtimeAction;
         private InputBuffer _inputBuffer;
         [SerializeField] private ComboDatabase comboDatabase;
+        
+        public ActionRuntime CurrentRuntime => _runtimeAction;
 
         private void Awake()
         {
@@ -24,6 +26,7 @@ namespace Game.Combat
                 _runtimeAction.Tick(Time.deltaTime);
                 if (_runtimeAction.CurrentPhase == ActionPhase.Done)
                 {
+                    _runtimeAction.OnCancelWindowOpened -= TryResolveAndExecute;
                     _runtimeAction = null;
                 }
             }
@@ -38,12 +41,29 @@ namespace Game.Combat
         private void TryResolveAndExecute()
         {
             var buffer = _inputBuffer.GetValid();
-            var actionData = _resolver.Resolve(buffer);
+            var actionData = _resolver.Resolve(buffer, _runtimeAction?.Data);
+    
+            Debug.Log($"Resolved: {actionData?.name}, Previous: {_runtimeAction?.Data?.name}");
+    
             if(actionData == null)
                 return;
+    
+            Debug.Log($"Phase: {_runtimeAction?.CurrentPhase}, InCancelWindow: {_runtimeAction?.IsInCancelWindow}, Elapsed: {_runtimeAction?.ElapsedTime}");
+    
             if (_runtimeAction is { IsInCancelWindow: false }) return;
-            Debug.Log($"Executing {actionData}");
+    
+            ExecuteAction(actionData);
+        }
+
+        private void ExecuteAction(ActionData actionData)
+        {
+            if (_runtimeAction != null)
+            {
+                _runtimeAction.OnCancelWindowOpened -= TryResolveAndExecute;
+                _runtimeAction.ForceEnd();
+            }
             _runtimeAction = new ActionRuntime(actionData);
+            _runtimeAction.OnCancelWindowOpened += TryResolveAndExecute;
             _inputBuffer.ConsumeAll();
         }
     }

@@ -20,6 +20,10 @@ namespace Game.Combat
                 {
                     if (IsInputMatchTiming(inputs, combo.maxGapBetweenInputs, combo.inputActionTypes.Length))
                     {
+                        if (combo.requiredPreviousAction != null && combo.requiredPreviousAction != previousAction)
+                        {
+                            continue;
+                        }   
                         if (bestCombo != null)
                         {
                             if (bestCombo.priority > combo.priority)
@@ -39,11 +43,6 @@ namespace Game.Combat
                         bestCombo = combo;
                     }
                 }
-            }
-
-            if (bestCombo && bestCombo.requiredPreviousAction)
-            {
-                bestCombo = null;
             }
             
             return bestCombo?.resultActionData;
