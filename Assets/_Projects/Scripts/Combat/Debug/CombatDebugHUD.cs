@@ -20,12 +20,17 @@ namespace Game.Combat
 
         private void OnGUI()
         {
+            Time.timeScale = GUI.HorizontalSlider(new Rect(50, 100, 200, 20), Time.timeScale, 0f, 1f);
+            GUI.Label(new Rect(260, 100, 100, 20), $"TimeScale: {Time.timeScale:F2}");
+            
+            
             if (_system.CurrentRuntime == null) return;
             var data = _system.CurrentRuntime.Data;
 
             if (data == null) return;
+            
 
-            Rect bar = new Rect(50, 50, 400, 30);
+            Rect bar = new Rect(800, 700, 400, 30);
 
             float total = data.timeStartUp + data.timeActive + data.timeRecovery;
             // Tỉ lệ

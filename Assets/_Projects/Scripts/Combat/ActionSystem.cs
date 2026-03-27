@@ -8,6 +8,7 @@ namespace Game.Combat
         private ComboResolver _resolver;
         private ActionRuntime _runtimeAction;
         private InputBuffer _inputBuffer;
+        private AnimationDriver _animationDriver;
         [SerializeField] private ComboDatabase comboDatabase;
         
         public ActionRuntime CurrentRuntime => _runtimeAction;
@@ -16,6 +17,7 @@ namespace Game.Combat
         {
             _resolver = new ComboResolver(comboDatabase);
             _inputBuffer = GetComponent<InputBuffer>();
+            _animationDriver = GetComponent<AnimationDriver>();
         }
 
         // Update is called once per frame
@@ -65,6 +67,7 @@ namespace Game.Combat
             _runtimeAction = new ActionRuntime(actionData);
             _runtimeAction.OnCancelWindowOpened += TryResolveAndExecute;
             _inputBuffer.ConsumeAll();
+            _animationDriver.PlayAnimation(actionData);
         }
     }
 }

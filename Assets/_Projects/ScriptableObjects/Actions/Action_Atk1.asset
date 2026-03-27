@@ -13,11 +13,20 @@ MonoBehaviour:
   m_Name: Action_Atk1
   m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
   actionType: 1
-  spriteAnimation: []
-  animationFrameRate: 0
-  timeStartUp: 0.2
-  timeActive: 0.3
-  timeRecovery: 0.3
+  spriteAnimation:
+  - {fileID: 21300000, guid: ef944ba090f14e349bae60d7d5671e65, type: 3}
+  - {fileID: 21300000, guid: 36ca1729d05363c4ca701d175d712171, type: 3}
+  - {fileID: 21300000, guid: 74aef535d6a64794ca19e75e663c57a5, type: 3}
+  - {fileID: 21300000, guid: e5f43fe762e2fd34781ba0ce81f0af6c, type: 3}
+  - {fileID: 21300000, guid: a1fb1a09340ff0b4d80bb593cc7f89e0, type: 3}
+  - {fileID: 21300000, guid: 90a1293828348d14b90cf14c843977f4, type: 3}
+  - {fileID: 21300000, guid: 64a871faf51e0aa46a43bba1168af73c, type: 3}
+  - {fileID: 21300000, guid: d3316f0f495649040b44d1842587806c, type: 3}
+  - {fileID: 21300000, guid: 54c2e4256fc128d4db94aa85cea48908, type: 3}
+  animationFrameRate: 12
+  timeStartUp: 0.25
+  timeActive: 0.25
+  timeRecovery: 0.25
   canCancel: 1
-  cancelWindowStart: 0.2
-  cancelWindowEnd: 0.35
+  cancelWindowStart: 0.12
+  cancelWindowEnd: 0.25
