@@ -1,6 +1,9 @@
-public enum DamageType
+namespace Game.Shared
 {
-    None = 0,
-    Fire,
-    Blunt
+    public enum DamageType
+    {
+        Physical = 0,
+        Magic,
+        True
+    }
 }
