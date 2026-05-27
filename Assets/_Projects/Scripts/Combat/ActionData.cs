@@ -15,7 +15,11 @@ namespace Game.Combat
         [Header("Cancel")] public bool canCancel;
         public float cancelWindowStart;
         public float cancelWindowEnd;
-        
+
+        [Header("Combat")] public int hitboxIndex;
+        public float damageAmount;
+        public DamageType damageType;
+
         public float TotalDuration => timeActive + timeStartUp + timeRecovery;
     }
 }

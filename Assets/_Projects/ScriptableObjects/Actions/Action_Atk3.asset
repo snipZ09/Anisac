@@ -33,3 +33,6 @@ MonoBehaviour:
   canCancel: 1
   cancelWindowStart: 0.25
   cancelWindowEnd: 0.5
+  hitboxIndex: 0
+  damageAmount: 15
+  damageType: 0

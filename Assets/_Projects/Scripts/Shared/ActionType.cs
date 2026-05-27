@@ -5,5 +5,7 @@ namespace Game.Shared
         None = 0,
         Attack,
         Dash,
+        Jump,
+        Move
     }
 }

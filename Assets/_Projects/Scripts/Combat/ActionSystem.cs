@@ -1,4 +1,5 @@
 using Game.Shared;
+using System;
 using UnityEngine;
 
 namespace Game.Combat
@@ -10,8 +11,9 @@ namespace Game.Combat
         private InputBuffer _inputBuffer;
         private AnimationDriver _animationDriver;
         [SerializeField] private ComboDatabase comboDatabase;
-        
+
         public ActionRuntime CurrentRuntime => _runtimeAction;
+        public event Action<ActionRuntime> OnActionStarted;
 
         private void Awake()
         {
@@ -44,16 +46,12 @@ namespace Game.Combat
         {
             var buffer = _inputBuffer.GetValid();
             var actionData = _resolver.Resolve(buffer, _runtimeAction?.Data);
-    
-            Debug.Log($"Resolved: {actionData?.name}, Previous: {_runtimeAction?.Data?.name}");
-    
-            if(actionData == null)
+
+            if (actionData == null)
                 return;
-    
-            Debug.Log($"Phase: {_runtimeAction?.CurrentPhase}, InCancelWindow: {_runtimeAction?.IsInCancelWindow}, Elapsed: {_runtimeAction?.ElapsedTime}");
-    
+
             if (_runtimeAction is { IsInCancelWindow: false }) return;
-    
+
             ExecuteAction(actionData);
         }
 
@@ -68,6 +66,7 @@ namespace Game.Combat
             _runtimeAction.OnCancelWindowOpened += TryResolveAndExecute;
             _inputBuffer.ConsumeAll();
             _animationDriver.PlayAnimation(actionData);
+            OnActionStarted?.Invoke(_runtimeAction);
         }
     }
 }
