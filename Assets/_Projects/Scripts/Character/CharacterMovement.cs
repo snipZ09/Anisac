@@ -21,6 +21,8 @@ namespace Game.Character
 
         public bool IsGrounded { get; private set; }
 
+        public bool IsDashing => _isDashing;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
