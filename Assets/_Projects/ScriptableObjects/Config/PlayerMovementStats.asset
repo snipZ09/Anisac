@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerMovementStats
   m_EditorClassIdentifier: Game.Shared::Game.Shared.MovementStats
   acceleration: 5
-  jumpForce: 10
+  jumpForce: 15
   jumpCooldown: 0.1
   maxAirJumps: 1
-  dashForce: 15
-  dashDuration: 0.2
+  dashForce: 12
+  dashDuration: 1
   dashCooldown: 0.5
   maxDashCount: 1

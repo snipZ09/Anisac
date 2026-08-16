@@ -21,7 +21,7 @@ namespace Game.Character
 
         public override void EnterState()
         {
-            _animationDriver.PlayAnimation(_jumpingData);
+            _animationDriver.PlayLocomotionAnimation(_jumpingData);
         }
     }
 }

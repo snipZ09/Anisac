@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Enemy_FemaleGoblin_Death
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 0
+  spriteAnimation:
+  - {fileID: 21300000, guid: ea002bf2ab3aff349b4205e8c7d0b012, type: 3}
+  - {fileID: 21300000, guid: 1af7b9d6d795665479456d49b656e47f, type: 3}
+  - {fileID: 21300000, guid: 33030d1db72b386489fb6ccb9f247ec6, type: 3}
+  - {fileID: 21300000, guid: 7c434577c42956243be982e513c06ea2, type: 3}
+  - {fileID: 21300000, guid: 5abb6a714731a9a4b8fe27aa70ba215e, type: 3}
+  - {fileID: 21300000, guid: 1e74ab70f6f53f443beba12d4aeeb96a, type: 3}
+  - {fileID: 21300000, guid: a2f6e4e3b50d8ae4caf5d34e430e7a3c, type: 3}
+  - {fileID: 21300000, guid: 6dab884f8c9c875498df18ac08c356aa, type: 3}
+  - {fileID: 21300000, guid: 3547110e5e363e146b0532f9f13dfdec, type: 3}
+  - {fileID: 21300000, guid: 04bf5a2ad1869184884eccf7a51b2aad, type: 3}
+  - {fileID: 21300000, guid: 7215816a4a6d4bc47a762ce34ab8be67, type: 3}
+  - {fileID: 21300000, guid: c363b522065b4354f9b4df8fefbe1f98, type: 3}
+  - {fileID: 21300000, guid: 65292a921234ea74c9e250af1df91882, type: 3}
+  - {fileID: 21300000, guid: 21a6852128662c3499705283b38f5114, type: 3}
+  animationFrameRate: 10
+  loopAnimation: 0
+  timeStartUp: 0
+  timeActive: 1.4
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0

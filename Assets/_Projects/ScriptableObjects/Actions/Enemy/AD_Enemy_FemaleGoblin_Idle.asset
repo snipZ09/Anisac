@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Enemy_FemaleGoblin_Idle
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 0
+  spriteAnimation:
+  - {fileID: 21300000, guid: 2652a1bf8ebabfd48978359a86245bfd, type: 3}
+  - {fileID: 21300000, guid: b6393964db59db84a882331c0f891db5, type: 3}
+  - {fileID: 21300000, guid: 5467c101e85309943bad6b52621dbaff, type: 3}
+  - {fileID: 21300000, guid: 55064aa0fb52da148941ae24698572aa, type: 3}
+  - {fileID: 21300000, guid: 3508210b12eb57b4e9655581f286e4ed, type: 3}
+  - {fileID: 21300000, guid: 741c901d727f0584c8ade2e9c35be457, type: 3}
+  - {fileID: 21300000, guid: 714464799fbffd74489361bcb939a8f8, type: 3}
+  - {fileID: 21300000, guid: e09eb74c7950d094da4b65c45ee53ed7, type: 3}
+  animationFrameRate: 8
+  loopAnimation: 1
+  timeStartUp: 0
+  timeActive: 1
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0

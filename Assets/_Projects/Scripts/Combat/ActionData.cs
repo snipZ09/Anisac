@@ -9,6 +9,7 @@ namespace Game.Combat
         public ActionType actionType;
         [Header("Animation")] public Sprite[] spriteAnimation;
         public float animationFrameRate;
+        public bool loopAnimation;
         [Header("Phases")] public float timeStartUp;
         public float timeActive;
         public float timeRecovery;

@@ -65,7 +65,7 @@ namespace Game.Combat
             _runtimeAction = new ActionRuntime(actionData);
             _runtimeAction.OnCancelWindowOpened += TryResolveAndExecute;
             _inputBuffer.ConsumeAll();
-            _animationDriver.PlayAnimation(actionData);
+            _animationDriver.PlayActionAnimation(actionData);
             OnActionStarted?.Invoke(_runtimeAction);
         }
     }

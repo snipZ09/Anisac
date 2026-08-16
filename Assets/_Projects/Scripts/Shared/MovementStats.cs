@@ -1,3 +1,4 @@
+using UnityEngine.Serialization;
 using UnityEngine;
 
 namespace Game.Shared
@@ -13,7 +14,8 @@ namespace Game.Shared
         public int maxAirJumps;
         [Header("Dashing")]
         public float dashForce;
-        public float dashDuration;
+        [FormerlySerializedAs("dashDuration")]
+        public float dashMoveDuration;
         public float dashCooldown;
         public float maxDashCount;
     }

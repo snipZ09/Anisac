@@ -11,7 +11,7 @@ namespace Game.Character
         private readonly CharacterMovement _movement;
         private readonly Rigidbody2D _rb;
 
-        public bool HasInput => Mathf.Abs(_rb.linearVelocity.x) > 0.01f;
+        public bool HasInput => _movement.HasMoveInput;
 
         public bool IsGrounded => _movement.IsGrounded;
 
@@ -25,7 +25,7 @@ namespace Game.Character
 
         public override void EnterState()
         {
-            _animationDriver.PlayAnimation(_walkingData);
+            _animationDriver.PlayLocomotionAnimation(_walkingData);
         }
     }
 }

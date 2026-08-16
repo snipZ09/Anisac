@@ -26,6 +26,8 @@ namespace Game.Shared
 
         public void ChangeState(BaseState newState)
         {
+            //UnityEngine.Debug.Log(
+            //    $"[{UnityEngine.Time.time:F3}] State: {_current.State.GetType().Name} -> {newState.GetType().Name}");
             _current.State?.ExitState();
             _current = _nodes[newState.GetType()];
             _current.State?.EnterState();
@@ -61,7 +63,6 @@ namespace Game.Shared
 
         private Transition GetTransition()
         {
-
             foreach (var transition in _anyTransitions)
             {
                 if (transition.Condition.Evaluate()) return transition;
@@ -75,5 +76,4 @@ namespace Game.Shared
             return null;
         }
     }
-
 }
