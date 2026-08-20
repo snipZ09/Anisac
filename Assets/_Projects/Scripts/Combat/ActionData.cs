@@ -20,6 +20,7 @@ namespace Game.Combat
         [Header("Combat")] public int hitboxIndex;
         public float damageAmount;
         public DamageType damageType;
+        public Vector2 knockback;
 
         public float TotalDuration => timeActive + timeStartUp + timeRecovery;
     }

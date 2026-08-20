@@ -23,6 +23,7 @@ namespace Game.Enemy
         [SerializeField] private Rigidbody2D rigidbody2D;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private AnimationDriver animationDriver;
+        [SerializeField] private EnemyActionRunner actionRunner;
         [SerializeField] private ActionData idleAnimation;
         [SerializeField] private ActionData chaseAnimation;
         [SerializeField] private ActionData attackAnimation;
@@ -34,21 +35,16 @@ namespace Game.Enemy
         [SerializeField] private float stopDistance = 1.25f;
         [SerializeField] private float attackRange = 1.5f;
         [SerializeField] private float attackCooldown = 1f;
-        [SerializeField] private float attackHitDelay = 0.15f;
-        [SerializeField] private float attackDamage = 10f;
-        [SerializeField] private Vector2 attackKnockback = new(3f, 1.5f);
         [SerializeField] private float moveSpeed = 2.5f;
         [SerializeField] private bool logDebug;
         [SerializeField] private Color hitFlashColor = Color.red;
         [SerializeField] private float hitFlashDuration = 0.08f;
 
+        private HitboxCollider[] hitboxColliders;
         private Color _originalColor;
         private Coroutine _hitFlashRoutine;
         private bool _lastIsPlayerInRange;
         private float _attackTimer;
-        private float _attackAnimationTimer;
-        private float _pendingAttackTimer;
-        private bool _pendingAttackHit;
         private float _hurtAnimationTimer;
         private bool _isDead;
         private EnemyAnimationState _currentAnimationState;
@@ -62,6 +58,8 @@ namespace Game.Enemy
             rigidbody2D = GetComponent<Rigidbody2D>();
             spriteRenderer ??= GetComponent<SpriteRenderer>();
             animationDriver ??= GetComponent<AnimationDriver>();
+            actionRunner ??= GetComponent<EnemyActionRunner>();
+            hitboxColliders = GetComponentsInChildren<HitboxCollider>();
             TryResolvePlayer();
 
             Debug.Assert(rigidbody2D != null, $"{name} is missing Rigidbody2D.", this);
@@ -92,28 +90,9 @@ namespace Game.Enemy
 
             if (player == null) return;
 
-            if (_attackAnimationTimer > 0f)
-            {
-                _attackAnimationTimer -= Time.deltaTime;
-            }
-
             if (_hurtAnimationTimer > 0f)
             {
                 _hurtAnimationTimer -= Time.deltaTime;
-            }
-
-            if (_pendingAttackHit)
-            {
-                _pendingAttackTimer -= Time.deltaTime;
-                if (_pendingAttackTimer <= 0f)
-                {
-                    _pendingAttackHit = false;
-
-                    if (IsPlayerInAttackRange)
-                    {
-                        TryAttackPlayer();
-                    }
-                }
             }
 
             float horizontalDistanceToPlayer = Mathf.Abs(player.position.x - transform.position.x);
@@ -133,9 +112,15 @@ namespace Game.Enemy
 
             if (IsPlayerInRange)
             {
+                float directionX = player.position.x >= transform.position.x ? 1f : -1f;
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.flipX = player.position.x < transform.position.x;
+                    spriteRenderer.flipX = directionX < 0f;
+                }
+
+                foreach (var hitbox in hitboxColliders)
+                {
+                    hitbox.SetFacing(directionX);
                 }
 
                 if (_attackTimer > 0f)
@@ -143,17 +128,15 @@ namespace Game.Enemy
                     _attackTimer -= Time.deltaTime;
                 }
 
-                if (_hurtAnimationTimer <= 0f && IsPlayerInAttackRange && _attackTimer <= 0f)
+                if (_hurtAnimationTimer <= 0f && IsPlayerInAttackRange && _attackTimer <= 0f &&
+                    actionRunner != null && !actionRunner.IsBusy)
                 {
                     _attackTimer = attackCooldown;
-                    _pendingAttackHit = true;
-                    _pendingAttackTimer = attackHitDelay;
-                    _attackAnimationTimer = GetAnimationDuration(attackAnimation);
-                    PlayAttackAnimation();
+                    actionRunner.PlayAction(attackAnimation);
 
                     if (logDebug)
                     {
-                        Debug.Log($"{name} attack triggered. Hit in {attackHitDelay:F2}s", this);
+                        Debug.Log($"{name} attack triggered via ActionRunner.", this);
                     }
                 }
             }
@@ -174,6 +157,11 @@ namespace Game.Enemy
             }
 
             if (_hurtAnimationTimer > 0f)
+            {
+                return;
+            }
+
+            if (actionRunner != null && actionRunner.IsBusy)
             {
                 StopMovement();
                 return;
@@ -245,16 +233,18 @@ namespace Game.Enemy
         {
             if (_isDead) return;
 
-            _pendingAttackHit = false;
-            _pendingAttackTimer = 0f;
-            _attackAnimationTimer = 0f;
-            StopMovement();
+            actionRunner?.CancelCurrentAction();
+
+            if (rigidbody2D != null)
+            {
+                rigidbody2D.linearVelocity = hitInfo.KnockbackForce;
+            }
 
             float hurtDuration = GetAnimationDuration(hurtAnimation);
             if (hurtDuration > 0f)
             {
                 _hurtAnimationTimer = hurtDuration;
-                PlayHurtAnimation();
+                PlayHurtAnimation(hurtDuration);
             }
 
             if (spriteRenderer == null) return;
@@ -278,10 +268,8 @@ namespace Game.Enemy
         private void HandleDied()
         {
             _isDead = true;
-            _pendingAttackHit = false;
-            _pendingAttackTimer = 0f;
-            _attackAnimationTimer = 0f;
             _hurtAnimationTimer = 0f;
+            actionRunner?.CancelCurrentAction();
             StopMovement();
 
             float deathDuration = GetAnimationDuration(deathAnimation);
@@ -305,9 +293,9 @@ namespace Game.Enemy
         {
             if (animationDriver == null) return;
 
-            if (_attackAnimationTimer > 0f)
+            if (actionRunner != null && actionRunner.IsBusy)
             {
-                PlayAnimationState(EnemyAnimationState.Attack);
+                _currentAnimationState = EnemyAnimationState.Attack;
                 return;
             }
 
@@ -338,7 +326,6 @@ namespace Game.Enemy
             {
                 EnemyAnimationState.Idle => idleAnimation,
                 EnemyAnimationState.Chase => chaseAnimation,
-                EnemyAnimationState.Attack => attackAnimation,
                 EnemyAnimationState.Hurt => hurtAnimation,
                 EnemyAnimationState.Death => deathAnimation,
                 _ => null
@@ -348,12 +335,6 @@ namespace Game.Enemy
 
             _currentAnimationState = state;
 
-            if (state == EnemyAnimationState.Attack)
-            {
-                animationDriver.PlayActionAnimation(data);
-                return;
-            }
-
             if (state == EnemyAnimationState.Hurt || state == EnemyAnimationState.Death)
             {
                 animationDriver.PlayPriorityAnimation(data, -1f);
@@ -361,14 +342,6 @@ namespace Game.Enemy
             }
 
             animationDriver.PlayLocomotionAnimation(data);
-        }
-
-        private void PlayAttackAnimation()
-        {
-            if (animationDriver == null || attackAnimation == null) return;
-
-            _currentAnimationState = EnemyAnimationState.Attack;
-            animationDriver.PlayActionAnimation(attackAnimation);
         }
 
         private float GetAnimationDuration(ActionData data)
@@ -381,39 +354,12 @@ namespace Game.Enemy
             return data.spriteAnimation.Length / data.animationFrameRate;
         }
 
-        private void TryAttackPlayer()
-        {
-            if (player == null) return;
-
-            IDamageable damageable = player.GetComponentInParent<IDamageable>();
-            if (damageable == null)
-            {
-                if (logDebug)
-                {
-                    Debug.Log($"{name} could not find IDamageable on player.", this);
-                }
-                return;
-            }
-
-            Vector2 direction = player.position.x >= transform.position.x ? Vector2.right : Vector2.left;
-            HitInfo hitInfo = new()
-            {
-                DamageCauser = gameObject,
-                DamageType = DamageType.Physical,
-                DamageAmount = attackDamage,
-                HitLocation = player.position,
-                KnockbackForce = new Vector2(direction.x * attackKnockback.x, attackKnockback.y)
-            };
-
-            damageable.TakeDamage(hitInfo);
-        }
-
-        private void PlayHurtAnimation()
+        private void PlayHurtAnimation(float duration)
         {
             if (animationDriver == null || hurtAnimation == null) return;
 
             _currentAnimationState = EnemyAnimationState.Hurt;
-            animationDriver.PlayPriorityAnimation(hurtAnimation, -1f);
+            animationDriver.PlayPriorityAnimation(hurtAnimation, duration);
         }
 
         private void PlayDeathAnimation()

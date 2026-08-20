@@ -60,6 +60,7 @@ namespace Game.Combat
         public void ForceEnd()
         {
             CurrentPhase = ActionPhase.Done;
+            OnPhaseChanged?.Invoke(CurrentPhase);
             OnActionComplete?.Invoke();
         }
     }

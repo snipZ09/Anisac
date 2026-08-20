@@ -158,6 +158,11 @@ namespace Game.Character
             _dashTimer = movementStats.dashMoveDuration;
         }
         
+        public void ApplyKnockback(Vector2 force)
+        {
+            _rigidbody.linearVelocity = force;
+        }
+
         public void SetMovementLock(bool isLocked)
         {
             IsMovementLocked = isLocked;

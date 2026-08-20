@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Combat
 {
-    public class ActionSystem : MonoBehaviour
+    public class ActionSystem : MonoBehaviour, IActionRunner
     {
         private ComboResolver _resolver;
         private ActionRuntime _runtimeAction;

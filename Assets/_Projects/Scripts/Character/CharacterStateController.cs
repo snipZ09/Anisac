@@ -214,6 +214,7 @@ namespace Game.Character
             }
 
             _actionSystem?.CurrentRuntime?.ForceEnd();
+            _hurt.SetPendingKnockback(hitInfo.KnockbackForce);
             _hurtRequested = true;
         }
 

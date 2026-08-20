@@ -36,3 +36,4 @@ MonoBehaviour:
   hitboxIndex: 0
   damageAmount: 15
   damageType: 0
+  knockback: {x: 3.5, y: 1.8}
