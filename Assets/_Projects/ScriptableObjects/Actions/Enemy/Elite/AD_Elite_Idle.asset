@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Elite_Idle
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 0
+  spriteAnimation:
+  - {fileID: 21300000, guid: 6f891bbf183e39341a48e503e5b1a16b, type: 3}
+  - {fileID: 21300000, guid: 9bd1f0f690260a343ab381d224a57cf3, type: 3}
+  - {fileID: 21300000, guid: 1731e2c0983d63142bb25085df80b20a, type: 3}
+  - {fileID: 21300000, guid: bc9b89fb66f0a72429980f6cf568457f, type: 3}
+  - {fileID: 21300000, guid: 96a951c22eed26f42a195cb165d1fc29, type: 3}
+  - {fileID: 21300000, guid: b6ccd32e08862e04289088fc864e9286, type: 3}
+  - {fileID: 21300000, guid: e48ceeeb846fe6542b6a2fc36d7b8f4f, type: 3}
+  - {fileID: 21300000, guid: edbcb8d4aba49d94dac3b85ca1324634, type: 3}
+  - {fileID: 21300000, guid: 2f6534659c4f1da43b4ed4571d3a4d49, type: 3}
+  - {fileID: 21300000, guid: 2aa698a3c93da1145b71c2892f704f66, type: 3}
+  - {fileID: 21300000, guid: cf3bf796989a5ee498b12ffd937cf2b5, type: 3}
+  animationFrameRate: 12
+  loopAnimation: 1
+  timeStartUp: 0
+  timeActive: 0.9166667
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0
+  knockback: {x: 0, y: 0}

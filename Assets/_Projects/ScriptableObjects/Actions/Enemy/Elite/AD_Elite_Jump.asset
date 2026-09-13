@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Elite_Jump
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 3
+  spriteAnimation:
+  - {fileID: 21300000, guid: 0f85ca21e099eb64aa80ff9e0b84b354, type: 3}
+  - {fileID: 21300000, guid: 06a215eaf858a5d48a6ee9ff322dd72d, type: 3}
+  - {fileID: 21300000, guid: 8c1f0829787bc484cad4b8fc8e3e0a61, type: 3}
+  - {fileID: 21300000, guid: 79effec6d7c160b47892a529b62972c5, type: 3}
+  - {fileID: 21300000, guid: acddd4c9395e9a04293cf4ffa320e4ff, type: 3}
+  - {fileID: 21300000, guid: f6abc7189c83ee347828e9959f18fa0a, type: 3}
+  - {fileID: 21300000, guid: b90540032881278468054197f9dfecac, type: 3}
+  - {fileID: 21300000, guid: bfd17aee1fa02554d9ca4be6403b9f4f, type: 3}
+  - {fileID: 21300000, guid: 4cb0938246027c0488c4ae63acf2a171, type: 3}
+  - {fileID: 21300000, guid: ac98cdebc9a406544940784eb807f731, type: 3}
+  - {fileID: 21300000, guid: 0cce517f901974643be4552fb6f8cca9, type: 3}
+  - {fileID: 21300000, guid: afa39328723dba74abd036332d19ffc1, type: 3}
+  - {fileID: 21300000, guid: a1e144c436fa7aa48ad480a3dfd182b0, type: 3}
+  - {fileID: 21300000, guid: 77b3c4d87d697954d80ab78a42afcb6c, type: 3}
+  - {fileID: 21300000, guid: 2fd1632f42da9594e9e3a46b3c93c607, type: 3}
+  animationFrameRate: 12
+  loopAnimation: 0
+  timeStartUp: 0
+  timeActive: 1.25
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0
+  knockback: {x: 0, y: 0}
