@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5b7d02d195a74488038d6214eb01c3, type: 3}
+  m_Name: ComboDatabase_Elite
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ComboDatabase
+  combos:
+  - {fileID: 11400000, guid: f58dbab943ce12ad9366cc6ff23424aa, type: 2}
+  - {fileID: 11400000, guid: 9cbafb46e16013109280cf2accd8774c, type: 2}
+  - {fileID: 11400000, guid: 08e642dc1d76a94f768b354962d4d1c0, type: 2}
+  - {fileID: 11400000, guid: d62374656ff775e5689da14f9ad8f052, type: 2}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Elite_Hurt
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 0
+  spriteAnimation:
+  - {fileID: 21300000, guid: e78fcdabdc745f04d88fb5e73ca4cc77, type: 3}
+  - {fileID: 21300000, guid: 78b8432310e4d724a88369d05bdf577a, type: 3}
+  - {fileID: 21300000, guid: b033ec4bab331494d9cee38db7fe8252, type: 3}
+  - {fileID: 21300000, guid: d6e3010c411ebe34d9ba44893417e41b, type: 3}
+  - {fileID: 21300000, guid: 5f2d825cf6bf6cf4c8d8250885e82aa6, type: 3}
+  - {fileID: 21300000, guid: 02116b5e192ae6b4789f4a654e4d0d17, type: 3}
+  animationFrameRate: 12
+  loopAnimation: 0
+  timeStartUp: 0
+  timeActive: 0.5
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0
+  knockback: {x: 0, y: 0}

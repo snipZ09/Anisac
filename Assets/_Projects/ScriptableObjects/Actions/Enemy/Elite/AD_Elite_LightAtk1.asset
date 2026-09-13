@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Elite_LightAtk1
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 1
+  spriteAnimation:
+  - {fileID: 21300000, guid: 3981d9e6a375e4c40add3a1ea4b86ca0, type: 3}
+  - {fileID: 21300000, guid: d6646851625f36948a16d00a0827497d, type: 3}
+  - {fileID: 21300000, guid: 99b4862f139f286489cd7f05c05c9a43, type: 3}
+  - {fileID: 21300000, guid: c11937c221be05a478769e23c68b9745, type: 3}
+  - {fileID: 21300000, guid: 5caa569acd55fce46afb99508f8fd8e7, type: 3}
+  - {fileID: 21300000, guid: dac24f4f6724edb4bb050802d43c62dd, type: 3}
+  - {fileID: 21300000, guid: b6a390f01f5c346428de92ee5f267cc5, type: 3}
+  animationFrameRate: 12
+  loopAnimation: 0
+  timeStartUp: 0.2
+  timeActive: 0.2
+  timeRecovery: 0.1833333
+  canCancel: 1
+  cancelWindowStart: 0.05
+  cancelWindowEnd: 0.1833333
+  hitboxIndex: 0
+  damageAmount: 8
+  damageType: 0
+  knockback: {x: 2, y: 1}

@@ -6,6 +6,7 @@ namespace Game.Shared
         Attack,
         Dash,
         Jump,
-        Move
+        Move,
+        Ranged
     }
 }
