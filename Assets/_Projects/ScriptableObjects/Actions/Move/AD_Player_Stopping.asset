@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Player_Stopping
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 0
+  spriteAnimation:
+  - {fileID: 21300000, guid: b5e1b35c910490c48b892d78d46c00cf, type: 3}
+  - {fileID: 21300000, guid: 5a69611c48d806e4c862845650ce2485, type: 3}
+  - {fileID: 21300000, guid: 121262f251114dd4d9f6404e76ff2c29, type: 3}
+  animationFrameRate: 12
+  loopAnimation: 0
+  timeStartUp: 0
+  timeActive: 0.25
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0

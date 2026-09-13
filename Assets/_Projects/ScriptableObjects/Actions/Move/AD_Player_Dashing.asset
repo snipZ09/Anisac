@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3af62d561c6b34e8047ef0f05cc104, type: 3}
+  m_Name: AD_Player_Dashing
+  m_EditorClassIdentifier: Game.Combat::Game.Combat.ActionData
+  actionType: 2
+  spriteAnimation:
+  - {fileID: 21300000, guid: dda3e88f8a4524447b2b336050005d4a, type: 3}
+  - {fileID: 21300000, guid: 4cddf8d9adeb0e9478442934d9e1b2e6, type: 3}
+  - {fileID: 21300000, guid: 51823df3c5eb5ea4a8dca43f70dc3511, type: 3}
+  - {fileID: 21300000, guid: 624e5082617fe5648b519cdc537fe3e6, type: 3}
+  - {fileID: 21300000, guid: afada572f4c312146b9c3ad5d35f9936, type: 3}
+  - {fileID: 21300000, guid: d79d81eb26f79bd4289cbe0a8fa15522, type: 3}
+  - {fileID: 21300000, guid: 9c1580c8cf57dc54a9883862216436d9, type: 3}
+  - {fileID: 21300000, guid: cf9881f237a8e4f4999c80cebf365396, type: 3}
+  - {fileID: 21300000, guid: ece2250fc03f5aa4cb05a596eb108a19, type: 3}
+  - {fileID: 21300000, guid: 26e913023398570448a5e3bd197c7a0e, type: 3}
+  - {fileID: 21300000, guid: 5ce5a3c0d595dfc4981bbdb9970b43ba, type: 3}
+  - {fileID: 21300000, guid: 4707401b6928ccc4f82337058ee34d21, type: 3}
+  - {fileID: 21300000, guid: c4760f33b09cbc140ae9090bb2017676, type: 3}
+  - {fileID: 21300000, guid: 4f1a46d84163ac447a38f9f61ef0dfe2, type: 3}
+  - {fileID: 21300000, guid: b6b3024024e569c47912bb4895798a00, type: 3}
+  - {fileID: 21300000, guid: d3e43b354fd61f14191e22e0a9d5faa5, type: 3}
+  - {fileID: 21300000, guid: 90cc9f382e93928469beaffaaa6fe939, type: 3}
+  - {fileID: 21300000, guid: 1b44dbd153b560742a19ce549f8cb2ee, type: 3}
+  - {fileID: 21300000, guid: 21d5d1aa9ab462e4cbff5d621a9e1933, type: 3}
+  animationFrameRate: 19
+  loopAnimation: 0
+  timeStartUp: 0
+  timeActive: 0
+  timeRecovery: 0
+  canCancel: 0
+  cancelWindowStart: 0
+  cancelWindowEnd: 0
+  hitboxIndex: -1
+  damageAmount: 0
+  damageType: 0
