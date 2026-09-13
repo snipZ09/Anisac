@@ -2,12 +2,6 @@
 
 A 2D pixel-art roguelite / action platformer built solo in Unity — currently in the combat prototype (vertical slice) stage.
 
-<!--
-Add your GIFs here once exported, e.g.:
-![Combo System](docs/gifs/combo-system.gif)
-![Attack & Damage Pipeline](docs/gifs/attack-enemy.gif)
--->
-
 ## About
 
 Anisac is a solo-developed 2D roguelite focused on fast, responsive combat. This project is also my personal learning ground for gameplay programming in Unity/C# — every core system (state handling, combo resolution, damage pipeline) is built from scratch rather than relying on built-in tools like Animator Controller state machines.
@@ -33,7 +27,13 @@ Anisac is a solo-developed 2D roguelite focused on fast, responsive combat. This
 
 ## Demo
 
-*(GIFs / clips showcasing the combo system and combat pipeline go here)*
+**Combo System** — chaining attacks into a 3-hit combo via input buffer + combo resolver
+
+![Combo System](docs/gifs/ComboSystem.gif)
+
+**Attack & Damage Pipeline** — shared Hitbox/Health system between player and enemy
+
+![Attack & Damage Pipeline](docs/gifs/AttackEnemy.gif)
 
 ## Getting Started
 
