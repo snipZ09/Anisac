@@ -2,7 +2,8 @@
     "name": "Game.Combat",
     "rootNamespace": "",
     "references": [
-        "GUID:cd02e30d3ca49d44bb39f2bdf8a14058"
+        "GUID:cd02e30d3ca49d44bb39f2bdf8a14058",
+        "GUID:9ac096a601976534d91f085fed9fcfbf"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

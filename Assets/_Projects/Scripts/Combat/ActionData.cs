@@ -22,6 +22,9 @@ namespace Game.Combat
         public DamageType damageType;
         public Vector2 knockback;
 
+        [Header("Audio")] public AudioClip sfxClip;
+        [Header("VFX")] public GameObject vfxPrefab;
+
         public float TotalDuration => timeActive + timeStartUp + timeRecovery;
     }
 }

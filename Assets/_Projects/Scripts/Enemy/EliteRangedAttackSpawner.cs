@@ -13,6 +13,15 @@ namespace Game.Enemy
         [SerializeField] private EliteEnemyController elite;
 
         private IActionRunner _actionRunner;
+        private Vector3 _baseSpawnLocalPosition;
+
+        private void Awake()
+        {
+            if (spawnPoint != null)
+            {
+                _baseSpawnLocalPosition = spawnPoint.localPosition;
+            }
+        }
 
         private void Start()
         {
@@ -22,6 +31,17 @@ namespace Game.Enemy
             {
                 _actionRunner.OnActionStarted += HandleActionStarted;
             }
+        }
+
+        private void Update()
+        {
+            if (spawnPoint == null || elite == null) return;
+
+            spawnPoint.localPosition = new Vector3(
+                Mathf.Abs(_baseSpawnLocalPosition.x) * elite.FacingDirectionX,
+                _baseSpawnLocalPosition.y,
+                _baseSpawnLocalPosition.z
+            );
         }
 
         private void OnDestroy()
