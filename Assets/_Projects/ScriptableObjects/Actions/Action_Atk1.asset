@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d3316f0f495649040b44d1842587806c, type: 3}
   - {fileID: 21300000, guid: 54c2e4256fc128d4db94aa85cea48908, type: 3}
   animationFrameRate: 12
+  loopAnimation: 0
   timeStartUp: 0.25
   timeActive: 0.25
   timeRecovery: 0.25
@@ -34,3 +35,5 @@ MonoBehaviour:
   damageAmount: 10
   damageType: 0
   knockback: {x: 2, y: 1}
+  sfxClip: {fileID: 8300000, guid: dee3a3617a36ff4448aac8f57f5e0314, type: 3}
+  vfxPrefab: {fileID: 6506234554177296328, guid: 17ab4751a9d9c1b42a45d3be7137cd24, type: 3}

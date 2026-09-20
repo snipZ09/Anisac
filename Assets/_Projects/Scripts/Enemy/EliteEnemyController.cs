@@ -32,6 +32,12 @@ namespace Game.Enemy
         [SerializeField] private ActionData deathAnimation;
         [SerializeField] private bool destroyOnDeath = true;
         [SerializeField] private ActionData dashAtkAnimation;
+        [SerializeField] private ActionData jumpAnimation;
+        [SerializeField] private Transform groundCheck;
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float groundCheckRadius = 0.15f;
+        [SerializeField] private float jumpForce = 9f;
+        [SerializeField] private float jumpHeightThreshold = 1.5f;
         [SerializeField] private float detectRange = 8f;
         [SerializeField] private float loseDetectBuffer = 1f;
         [SerializeField] private float stopDistance = 1.5f;
@@ -280,6 +286,8 @@ namespace Game.Enemy
                 return;
             }
 
+            TryJump();
+
             float horizontalDistanceToPlayer = Mathf.Abs(player.position.x - transform.position.x);
             if (horizontalDistanceToPlayer <= stopDistance)
             {
@@ -288,6 +296,24 @@ namespace Game.Enemy
             }
 
             rigidbody2D.linearVelocity = new Vector2(FacingDirectionX * moveSpeed, rigidbody2D.linearVelocity.y);
+        }
+
+        private void TryJump()
+        {
+            if (groundCheck == null) return;
+
+            bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            if (!isGrounded) return;
+
+            if (player.position.y - transform.position.y > jumpHeightThreshold)
+            {
+                rigidbody2D.linearVelocity = new Vector2(rigidbody2D.linearVelocity.x, jumpForce);
+
+                if (animationDriver != null && jumpAnimation != null)
+                {
+                    animationDriver.PlayLocomotionAnimation(jumpAnimation);
+                }
+            }
         }
 
         private void TryResolvePlayer()
